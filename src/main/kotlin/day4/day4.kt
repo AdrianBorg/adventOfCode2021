@@ -36,8 +36,8 @@ fun day4a() {
     println(product)
 }
 
-fun getCardWithRemovedValues(winningCard: BingoCard, inputs: List<Int>): Set<Int> {
-    return winningCard.asMutableSet().subtract(inputs.toSet())
+fun getCardWithRemovedValues(card: BingoCard, inputs: List<Int>): Set<Int> {
+    return card.asMutableSet().subtract(inputs.toSet())
 }
 
 fun findLosingCardAndIndex(cards: List<BingoCard>, inputs: List<Int>): Pair<BingoCard, Int> {
