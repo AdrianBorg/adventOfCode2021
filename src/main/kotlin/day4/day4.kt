@@ -3,7 +3,27 @@ package day4
 import java.io.File
 
 fun main() {
+    day4a()
+
+    day4b()
+}
+
+fun day4b() {
     val readings = File(ClassLoader.getSystemResource("day4a.txt").toURI()).readLines()
+
+    val (cards, inputs) = processBingoFileReadings(readings)
+
+    val (losingCard, index) = findLosingCardAndIndex(cards, inputs)
+
+    val cardWithRemovedValues = getCardWithRemovedValues(losingCard, inputs.subList(0, index + 1))
+
+    val product = sumOfValuesInCollection(cardWithRemovedValues) * inputs[index]
+
+    println(product)
+}
+
+fun day4a() {
+    val readings = File(ClassLoader.getSystemResource("day4b.txt").toURI()).readLines()
 
     val (cards, inputs) = processBingoFileReadings(readings)
 
@@ -18,6 +38,21 @@ fun main() {
 
 fun getCardWithRemovedValues(winningCard: BingoCard, inputs: List<Int>): Set<Int> {
     return winningCard.asMutableSet().subtract(inputs.toSet())
+}
+
+fun findLosingCardAndIndex(cards: List<BingoCard>, inputs: List<Int>): Pair<BingoCard, Int> {
+    var counter = inputs.size
+    var filteredCards = cards
+
+    while (filteredCards.size == 100) {
+        counter--
+        val subList = inputs.subList(0, counter)
+        filteredCards = filteredCards.filter { card ->
+            card.containsLine(subList)
+        }
+    }
+
+    return Pair(cards.subtract(filteredCards.toSet()).first(), counter)
 }
 
 fun findFirstWinningCardAndIndex(cards: List<BingoCard>, inputs: List<Int>): Pair<BingoCard, Int> {
