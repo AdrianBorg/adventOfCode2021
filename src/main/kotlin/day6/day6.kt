@@ -1,6 +1,6 @@
 package day6
 
-import java.io.File
+import util.loadLineFromResourcesToIntList
 
 fun main() {
     day6a()
@@ -8,9 +8,7 @@ fun main() {
 
 fun day6a() {
 
-    val inputLanternFish = File(ClassLoader.getSystemResource("day6.txt").toURI()).readLines()[0]
-        .split(",")
-        .map(String::toInt)
+    val inputLanternFish = loadLineFromResourcesToIntList("day6.txt", ",")
         .map(::LanternFish)
 
     val lanternFish = inputLanternFish.toMutableList()

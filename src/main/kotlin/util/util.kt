@@ -14,6 +14,12 @@ fun readResourcesToIntList(filename: String): List<Int> {
     return loadLinesFromResources(filename, String::toInt)
 }
 
+fun loadLineFromResourcesToIntList(filename: String, separator: String): List<Int> {
+    return File(ClassLoader.getSystemResource(filename).toURI()).readLines()[0]
+        .split(separator)
+        .map(String::toInt)
+}
+
 fun sumOfValuesInCollection(collection: Collection<Int>): Int {
     return collection.reduce { acc, i -> acc + i }
 }

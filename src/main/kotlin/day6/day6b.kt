@@ -1,7 +1,7 @@
 package day6
 
+import util.loadLineFromResourcesToIntList
 import util.toItemCounterMap
-import java.io.File
 
 fun main() {
     day6b()
@@ -12,9 +12,7 @@ const val respawnTimer = 6
 const val totalDaysToSimulate = 256
 
 fun day6b() {
-    val inputTimers =  File(ClassLoader.getSystemResource("day6.txt").toURI()).readLines()[0]
-        .split(",")
-        .map(String::toInt)
+    val inputTimers = loadLineFromResourcesToIntList("day6.txt", ",")
 
     val counterMap = inputTimers.toItemCounterMap()
 
