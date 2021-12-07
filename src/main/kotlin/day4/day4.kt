@@ -110,7 +110,7 @@ class BingoCard() {
         return set
     }
 
-    private fun rowToColumns(): ArrayList<MutableList<Int>> {
+    private fun rowToColumns(): ArrayList<out List<Int>> {
         val columns = ArrayList<MutableList<Int>>()
 
         for (i in 0 until rows[0].size) {
