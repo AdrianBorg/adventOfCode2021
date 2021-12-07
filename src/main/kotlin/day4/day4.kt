@@ -1,5 +1,6 @@
 package day4
 
+import util.sumOfValuesInCollection
 import java.io.File
 
 fun main() {
@@ -79,10 +80,6 @@ fun processBingoFileReadings(readings: List<String>): Pair<List<BingoCard>, List
     return Pair(cards, inputs)
 }
 
-fun sumOfValuesInCollection(collection: Collection<Int>): Int {
-    return collection.reduce { acc, i -> acc + i }
-}
-
 class BingoCard() {
     private var rows: MutableList<List<Int>> = ArrayList()
 
@@ -105,7 +102,7 @@ class BingoCard() {
     }
 
     fun asMutableSet(): MutableSet<Int> {
-        val set = HashSet<Int>();
+        val set = HashSet<Int>()
         rows.forEach(set::addAll)
         return set
     }
