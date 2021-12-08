@@ -2,6 +2,12 @@ package util
 
 import java.io.File
 
+fun loadLinesFromResources(
+    filename: String,
+): List<String> {
+    return File(ClassLoader.getSystemResource(filename).toURI()).readLines()
+}
+
 fun <T> loadLinesFromResources(
     filename: String,
     func: (line: String) -> T
